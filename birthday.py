@@ -1,22 +1,57 @@
-print("(1)Kişi oluştur\n(2)Kişi arat")
-secenek=input("Yapmak istediğiniz işlemi girin: ")
+from os import system, name
+import time
 
-if secenek=="1":    
-    dosya=open("database.txt","a")
-    isim=input("İsim: ")
-    doğumtarihi=input("Doğum tarihi: ")
-    dosya.writelines(isim+"\t"+doğumtarihi)
-    print("Kişi oluşturuldu.")
-    dosya.close()
-elif secenek=="2":
-    dosya=open("database.txt","r")
-    arananisim=input("Aranan isim: ")
-    dosya.seek(0)
-    for i in dosya:
-        if arananisim in i:
-            print(i)
-        elif arananisim not in i:
-            print("Kişi bulunamadı.")    
-    dosya.close()    
+def temizle():
+    if name == "nt":
+        _=system("cls")
+    else:
+        _=system("clear")
 
+while True:
+    print("(1)Kişi oluştur\n(2)Kişi arat\n(3)Kişileri listele\n(0)Çıkış yap")
+    secenek=input("Yapmak istediğiniz işlemi girin: ")
     
+    if secenek=="1":    
+        dosya=open("database.txt","a")
+        isim=input("İsim: ")
+        gun=input("Gün: ")
+        ay=input("Ay: ")
+        yil=input("Yıl: ")
+        dosya.writelines(isim+" "+gun+" "+ay+" "+yil)
+        print("Kişi oluşturuldu.")
+        dosya.close()
+        sorgu=input("Devam etmek için herhangi bir tuşa basın(Çıkış için q): ")
+        if sorgu=="q":
+            break
+        else:
+            temizle()
+    elif secenek=="2":
+        dosya=open("database.txt","r")
+        arananisim=input("Aranan isim: ")
+        dosya.seek(0)
+        for i in dosya:
+            if arananisim in i:
+             print(i)
+            elif arananisim not in i:
+                print("Kişi bulunamadı.")    
+                dosya.close()    
+        sorgu=input("Devam etmek için herhangi bir tuşa basın(Çıkış için q): ")
+        if sorgu=="q":
+            break
+        else:
+            temizle()
+
+    elif secenek=="3":
+        dosya=open('database.txt', 'r') 
+        icerik =dosya.read()        
+        print(icerik)
+        dosya.close()
+        sorgu=input("Devam etmek için herhangi bir tuşa basın(Çıkış için q): ")
+        if sorgu=="q":
+                break
+        else:
+            temizle()
+            
+    elif secenek=="0":
+        print("Çıkış yapıldı.")       
+        break
