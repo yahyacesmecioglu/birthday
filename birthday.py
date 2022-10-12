@@ -17,7 +17,7 @@ while True:
         gun=input("Gün: ")
         ay=input("Ay: ")
         yil=input("Yıl: ")
-        dosya.writelines(isim+" "+gun+" "+ay+" "+yil)
+        dosya.writelines(isim+" "+gun+" "+ay+" "+yil+("\n"))
         print("Kişi oluşturuldu.")
         dosya.close()
         sorgu=input("Devam etmek için herhangi bir tuşa basın(Çıkış için q): ")
