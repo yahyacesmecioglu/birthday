@@ -9,7 +9,7 @@ def temizle():
 temizle()
 
 while True:
-    print("---------------------\n(1)Kişi oluştur\n(2)Kişi arat\n(3)Kişileri listele\n(0)Çıkış yap\n---------------------")
+    print("----------------------\n(1)Kişi oluştur\n(2)Kişi arat\n(3)Kişileri listele\n(0)Çıkış yap\n----------------------")
     secenek=input("Yapmak istediğiniz işlemi girin: ")
 
     temizle()
