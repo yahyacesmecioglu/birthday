@@ -7,6 +7,8 @@ def temizle():
     else:
         _=system("clear")
 
+temizle()
+
 while True:
     print("(1)Kişi oluştur\n(2)Kişi arat\n(3)Kişileri listele\n(0)Çıkış yap")
     secenek=input("Yapmak istediğiniz işlemi girin: ")
@@ -27,19 +29,23 @@ while True:
             temizle()
     elif secenek=="2":
         dosya=open("database.txt","r")
+        kisiBulundu = False
         arananisim=input("Aranan isim: ")
         dosya.seek(0)
         for i in dosya:
-            if arananisim in i:
-             print(i)
-            elif arananisim not in i:
-                print("Kişi bulunamadı.")    
-                dosya.close()    
+            if arananisim.lower() in i.lower():
+                print(i)
+                kisiBulundu = True
+        if kisiBulundu==False:
+            print("Kişi bulunamadı.")    
+            dosya.close()
+        
         sorgu=input("Devam etmek için herhangi bir tuşa basın(Çıkış için q): ")
         if sorgu=="q":
             break
         else:
             temizle()
+        
 
     elif secenek=="3":
         dosya=open('database.txt', 'r') 
@@ -48,7 +54,7 @@ while True:
         dosya.close()
         sorgu=input("Devam etmek için herhangi bir tuşa basın(Çıkış için q): ")
         if sorgu=="q":
-                break
+            break
         else:
             temizle()
             
