@@ -1,5 +1,4 @@
 from os import system, name
-import time
 
 def temizle():
     if name == "nt":
@@ -7,9 +6,13 @@ def temizle():
     else:
         _=system("clear")
 
+temizle()
+
 while True:
-    print("(1)Kişi oluştur\n(2)Kişi arat\n(3)Kişileri listele\n(0)Çıkış yap")
+    print("----------------------\n(1)Kişi oluştur\n(2)Kişi arat\n(3)Kişileri listele\n(0)Çıkış yap\n----------------------")
     secenek=input("Yapmak istediğiniz işlemi girin: ")
+
+    temizle()
     
     if secenek=="1":    
         dosya=open("database.txt","a")
@@ -18,7 +21,9 @@ while True:
         ay=input("Ay: ")
         yil=input("Yıl: ")
         dosya.writelines(isim+" "+gun+" "+ay+" "+yil+("\n"))
+        print("-----------------")
         print("Kişi oluşturuldu.")
+        print("-----------------")
         dosya.close()
         sorgu=input("Devam etmek için herhangi bir tuşa basın(Çıkış için q): ")
         if sorgu=="q":
@@ -27,28 +32,37 @@ while True:
             temizle()
     elif secenek=="2":
         dosya=open("database.txt","r")
+        kisiBulundu = False
+        print("-----------------")
         arananisim=input("Aranan isim: ")
         dosya.seek(0)
         for i in dosya:
-            if arananisim in i:
-             print(i)
-            elif arananisim not in i:
-                print("Kişi bulunamadı.")    
-                dosya.close()    
+            if arananisim.lower() in i.lower():
+                print("-----------------")
+                print(i)
+                kisiBulundu = True
+        if kisiBulundu==False:
+            print("-----------------")
+            print("Kişi bulunamadı.")    
+            dosya.close()
+        print("-----------------")
         sorgu=input("Devam etmek için herhangi bir tuşa basın(Çıkış için q): ")
         if sorgu=="q":
             break
         else:
             temizle()
+        
 
     elif secenek=="3":
         dosya=open('database.txt', 'r') 
         icerik =dosya.read()        
+        print("-----------------")
         print(icerik)
+        print("-----------------")
         dosya.close()
         sorgu=input("Devam etmek için herhangi bir tuşa basın(Çıkış için q): ")
         if sorgu=="q":
-                break
+            break
         else:
             temizle()
             
